@@ -46,6 +46,9 @@ git clone https://github.com/jesseotk/config.nvim.git %userprofile%\AppData\Loca
 ```
 
 ### Re-installation
+
+First clean up the old installation:
+
 ```sh
 rm -rf ~/.local/share/nvim/lazy
 
@@ -54,6 +57,8 @@ mv ~/.config/nvim ~/.config/nvim.old
 
 rm -rf ~/.config/nvim
 ```
+
+Then follow the installation steps above!
 
 ### Post Installation
 
