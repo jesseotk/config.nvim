@@ -45,6 +45,16 @@ git clone https://github.com/jesseotk/config.nvim.git "${XDG_CONFIG_HOME:-$HOME/
 git clone https://github.com/jesseotk/config.nvim.git %userprofile%\AppData\Local\nvim\ 
 ```
 
+### Re-installation
+```sh
+rm -rf ~/.local/share/nvim/lazy
+
+# Optional if you want to create a backup of your old config
+mv ~/.config/nvim ~/.config/nvim.old
+
+rm -rf ~/.config/nvim
+```
+
 ### Post Installation
 
 Run the following command and then **you are ready to go**!
