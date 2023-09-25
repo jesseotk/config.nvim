@@ -194,6 +194,39 @@ require('lazy').setup({
     build = ':TSUpdate',
   },
 
+  {
+    -- Undotree
+    'mbbill/undotree',
+    vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+  },
+
+  {
+    -- Vimwiki
+    'vimwiki/vimwiki',
+    init = function ()
+      vim.g.vimwiki_list = {
+        {
+          ['path'] = '~/docs/vimwiki/',
+          ['syntax'] = 'markdown',
+          ['ext'] = '.md',
+        },
+      }
+      vim.g.vimwiki_ext2syntax = {
+        ['.md'] = 'markdown',
+        ['.markdown'] = 'markdown',
+        ['.mdown'] = 'markdown',
+      }
+      vim.g.vimwiki_global_ext = 0  -- don't treat all md files as vimwiki
+    end,
+  },
+
+  {
+    -- Vim Tmux navigator
+    'christoomey/vim-tmux-navigator',
+    lazy=false,
+  },
+
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -214,7 +247,7 @@ require('lazy').setup({
 -- NOTE: You can change these options as you wish!
 
 -- Set colorscheme
-vim.cmd('colorscheme rose-pine')
+vim.cmd'colorscheme rose-pine'
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -234,7 +267,10 @@ vim.o.clipboard = 'unnamedplus'
 vim.o.breakindent = true
 
 -- Save undo history
-vim.o.undofile = true
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. ".config/nvim/undodir"
+vim.opt.undofile = true
 
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.o.ignorecase = true
@@ -256,6 +292,10 @@ vim.o.termguicolors = true
 -- Set line length indicator
 vim.opt.colorcolumn = "80"
 
+-- Tab settings
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
@@ -263,12 +303,20 @@ vim.opt.colorcolumn = "80"
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Remaps for dealing with word wrap
-vim.keymap.set('n', '<leader>ww', ":set wrap!<CR>")
+vim.keymap.set('n', '<leader>sww', ":set wrap!<CR>")
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Keymap for exiting file into dir
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+
+-- Keymap for moving highlighted line(s)
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '>-2<CR>gv=gv")
+
+-- Keymap to allow search term to stay in the middle
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
