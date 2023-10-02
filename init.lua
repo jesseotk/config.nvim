@@ -247,6 +247,9 @@ require('lazy').setup({
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
+-- Set cursor style
+vim.o.guicursor = ""
+
 -- Set colorscheme
 vim.cmd'colorscheme rose-pine'
 
