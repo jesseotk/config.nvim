@@ -47,6 +47,11 @@ Run the following command and then **you are ready to go**!
 nvim --headless "+Lazy! sync" +qa
 ```
 
+**Update remote**:
+```sh 
+cd $HOME/.config/nvim && git remote set-url origin git@github.com:ogjojo/config.nvim.git
+```
+
 ### Windows Installation
 
 Installation may require installing build tools, and updating the run command for `telescope-fzf-native`
@@ -61,4 +66,3 @@ This requires:
 {'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 ```
 
-test
