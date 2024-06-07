@@ -94,7 +94,7 @@ require('lazy').setup({
 
   {
     -- Theme
-    'rose-pine/neovim', name = 'rose-pine'
+    "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...
   },
 
   {
@@ -212,13 +212,15 @@ require('lazy').setup({
 vim.o.guicursor = ""
 
 -- Set colorscheme
-vim.cmd'colorscheme rose-pine'
+vim.o.background = "dark" -- or "light" for light mode
+vim.cmd([[colorscheme gruvbox]])
 
 -- Set highlight on search
 vim.o.hlsearch = false
 
 -- Make line numbers default
-vim.wo.relativenumber = true
+vim.o.number = true
+vim.o.relativenumber = true
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
